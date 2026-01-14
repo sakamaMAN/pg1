@@ -1,10 +1,8 @@
 let addBtn = document.querySelector("#btn");
-let listData =[];
-listData = JSON.parse(localStorage.getItem("list"));
-window.onload = () => {
-    if(!listData) {
-        return;
-    }
+
+let listData = JSON.parse(localStorage.getItem("list"));
+if (!Array.isArray(listData)) listData = [];
+
 
     for(let v of listData) {
         let div = document.createElement("div");
@@ -14,14 +12,13 @@ window.onload = () => {
         p.textContent = v.content;
 
         let button = document.createElement("button");
-        button.textContent = v.num;
+        button.textContent = "削除";
         button.classList.add("deleteBtn");
 
         document.querySelector("#addList").appendChild(div);
         div.appendChild(p);
         div.appendChild(button);
     }
-}
 
 addBtn.addEventListener("click", addList);
 
@@ -36,7 +33,7 @@ function addList() {
     p.textContent = text;
 
     let button = document.createElement("button");
-    button.textContent = num;
+    button.textContent = "削除";
     button.classList.add("deleteBtn");
 
     document.querySelector("#addList").appendChild(div);
