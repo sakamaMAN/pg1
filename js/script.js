@@ -22,6 +22,15 @@ if (!Array.isArray(listData)) listData = [];
 
 addBtn.addEventListener("click", addList);
 
+document.querySelector("#addList").addEventListener("click", (event) => {
+    let item = event.target.parentElement;
+    let items =Array.from(document.querySelectorAll("#addList .li"));
+    let index = items.indexOf(item);
+    listData.splice(index, 1);
+    localStorage.setItem("list", JSON.stringify(listData));
+    item.remove();
+});
+
 function addList() {
     let text = document.querySelector("#text").value;
     let num = document.querySelector("#time").value;
